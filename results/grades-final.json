@@ -1,0 +1,6680 @@
+[
+ {
+  "run": "runs/haiku-r1/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 54,
+  "runtime_loc": 788,
+  "grade_seconds": 29.6,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/haiku-r2/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 3066,
+  "runtime_loc": 724,
+  "grade_seconds": 22.1,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/haiku-r3/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 2141,
+  "runtime_loc": 815,
+  "grade_seconds": 22.9,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/nemotron-r1/final",
+  "stage1": 1,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 1,
+  "total": 51,
+  "tests": null,
+  "runtime_loc": 348,
+  "grade_seconds": 2.1,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests/ directory"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": false,
+    "detail": "no tests"
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/nemotron-r2/final",
+  "stage1": 1,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 1,
+  "total": 51,
+  "tests": null,
+  "runtime_loc": 1202,
+  "grade_seconds": 172.0,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_request', want 'bad_json'"
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests/ directory"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": false,
+    "detail": "no tests"
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/nemotron-r3/final",
+  "stage1": 1,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 1,
+  "total": 51,
+  "tests": null,
+  "runtime_loc": 1159,
+  "grade_seconds": 172.0,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests/ directory"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": false,
+    "detail": "no tests"
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/opus-r1/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 91,
+  "runtime_loc": 783,
+  "grade_seconds": 26.5,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/opus-r2/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 145,
+  "runtime_loc": 870,
+  "grade_seconds": 41.8,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/opus-r3/final",
+  "stage1": 39,
+  "stage1_total": 39,
+  "stage2": 12,
+  "stage2_total": 12,
+  "passed": 51,
+  "total": 51,
+  "tests": 69,
+  "runtime_loc": 791,
+  "grade_seconds": 19.7,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-nemotron-r1/final",
+  "stage1": 1,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 1,
+  "total": 51,
+  "tests": 19,
+  "runtime_loc": 407,
+  "grade_seconds": 0.7,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "no server.py"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "agent server did not start: server did not start: /home/user/.venvs/livedoc/bin/python: can't open file '/tmp/livedoc-grade-e3jugg7p/project/server.py': [Errno 2] No such file or directory\n"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "2 failed, 19 passed in 0.06s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-nemotron-r2/final",
+  "stage1": 4,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 4,
+  "total": 51,
+  "tests": 0,
+  "runtime_loc": 1598,
+  "grade_seconds": 14.0,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"i1\"}"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"x1\"}"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"290164f5fea6\"}"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"38beb539b020\"}"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"c075ba45edf4\"}"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"op0\"}"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"ce4a3e86263f\"}"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"ab91e7fc0947\"}"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"ab5144cfa29d\"}"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"8b7ec1d84a82\"}"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"04439654dea6\"}"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"ad05af9e46c4\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_rev', want 'bad_request'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"b97a4b4f23b1\"}"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"67c4d1ce5c91\"}"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"3889c3d20e35\"}"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"once\"}"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"p1-0\"}"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"keep\"}"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"dc2daf7357a0\"}"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"fa1016380058\"}"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"f482b494b3c9\"}"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"4f800d9b110e\"}"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"f1709ef21407\"}"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"78ab5c94d4cb\"}"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"7d19b01d3a0e\"}"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"b951492cacf1\"}"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"f301ea17c1d8\"}"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"long0\"}"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'text' [l1:135]"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'text' [l2:143]"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'text' [l3:165]"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "AssertionError: op based on rev 6 but server is at 5 [expect_op:95]"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "AssertionError: op based on rev 2 but server is at 1 [expect_op:95]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "AssertionError: op based on rev 11 but server is at 10 [expect_op:95]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'text' [l7:238]"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: u0: AttributeError: 'Client' object has no attribute 'text'; u1: AttributeError: 'Client' object has no attribute 'text' [e2e:284]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_rev\", \"message\": \"Invalid operation: bad_rev\", \"id\": \"s0\"} [recv_type:125]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'cursors' [cursors:317]"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AssertionError: op based on rev 3 but server is at 2 [expect_op:95]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'cursors' [cursors:317]"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests ran in 0.00s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-nemotron-r3/final",
+  "stage1": 14,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 14,
+  "total": 51,
+  "tests": 0,
+  "runtime_loc": 750,
+  "grade_seconds": 28.9,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "AssertionError: alice did not receive bob's transformed op"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"out_of_range\", \"message\": \"Operation out of range\"}"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: alice did not receive bob's transformed op"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"out_of_range\", \"message\": \"Operation out of range\"}"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: text: got '^B01ffQ56cd', want 'B^01ffQ569cd'"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: alice did not receive bob's transformed op"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: expected error, got {\"type\": \"ack\", \"doc\": \"d\", \"id\": \"m1\", \"rev\": 1}"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'n1'"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'e0'"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 3; c1: KeyError: 2; c2: KeyError: 2"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 3; c1: KeyError: 2; c2: KeyError: 2"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 3; c1: KeyError: 2; c2: KeyError: 2"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "AssertionError: rev 0: got ('error', None, None), want ('snapshot', 0, '')"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "AssertionError: rev 0: got None, want ''"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "AssertionError: unjoined snapshot: got None, want 'abc'"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "AssertionError: rev 463: got None, want 'aa😀aç😀ççabaçbç😀çaab😀ab😀😀😀😀aç😀bbç😀çabb😀bbbbçbbaç😀çbbabbb😀bbbbaçaba😀bab😀b😀aaaçabbbbaaçbbaçbbç😀😀ç😀aaçb😀😀😀😀çabbçbabçbb😀ça😀çb😀bbbbbbbbb'"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "no livedoc_client.py"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests ran in 0.00s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-qwen-r1/final",
+  "stage1": 9,
+  "stage1_total": 39,
+  "stage2": 2,
+  "stage2_total": 12,
+  "passed": 11,
+  "total": 51,
+  "tests": 67,
+  "runtime_loc": 1224,
+  "grade_seconds": 71.7,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'm1'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"}"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "AssertionError: not synced: client '0abc12' vs server 'abc1' [settle:127]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "TimeoutError: client sent nothing within 3.0s [recv:209]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: a client never synced [e2e:287]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"client must be a non-empty string\"} [recv_type:125]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AssertionError: own insert at cursor should push it: {'bob': 9} [k2:345]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "8 failed, 67 passed in 38.28s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-qwen-r2/final",
+  "stage1": 5,
+  "stage1_total": 39,
+  "stage2": 2,
+  "stage2_total": 12,
+  "passed": 7,
+  "total": 51,
+  "tests": null,
+  "runtime_loc": 961,
+  "grade_seconds": 726.6,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"i1\"}"
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"x1\"}"
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"e00a6019edbb\"}"
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"64609a305df6\"}"
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"430b3be93ec7\"}"
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"op0\"}"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"8a45f03fc0b4\"}"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"2f700bccd52e\"}"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"1b6ad6320c41\"}"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"a317e0b91799\"}"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"ba20aa524e2e\"}"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"74d7eb6320a4\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"m4\"}"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"576065b875f5\"}"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"9f69d14006b5\"}"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"cd75b8508678\"}"
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"once\"}"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"p1-0\"}"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"keep\"}"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"673fb8b1242a\"}"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"947ec41b9187\"}"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"150bb18585d7\"}"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"ce73ba3525a4\"}"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"27f501798def\"}"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"6787ed6481da\"}"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"c117ffed986d\"}"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"f25bbc779f66\"}"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"45a7ad86b511\"}"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"h0\"}"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"1c6a3c4bf063\"}"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"long0\"}"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "AssertionError: text: 'abc' [l7:238]"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"bad_request\", \"message\": \"edit must have exactly 'ins' or 'del' key\", \"id\": \"s0\"} [recv_type:125]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "timed out after 120s"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "no tests/ directory"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": false,
+    "detail": "no tests"
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/opusplan-qwen-r3/final",
+  "stage1": 26,
+  "stage1_total": 39,
+  "stage2": 8,
+  "stage2_total": 12,
+  "passed": 34,
+  "total": 51,
+  "tests": 66,
+  "runtime_loc": 1292,
+  "grade_seconds": 103.5,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'm1'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_request', want 'not_joined'"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'e0'"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": false,
+    "detail": "AssertionError: wait_synced returned False after ack [l2:148]"
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "AssertionError: text after remote op: '[hello world' [l4:179]"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "AssertionError: not synced: client '0abc12' vs server 'abc1' [settle:127]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "TimeoutError: client sent nothing within 3.0s [recv:209]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "AssertionError: text: 'abc' [l7:238]"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: a client never synced [e2e:287]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: a client never synced [e2e:287]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "AssertionError: cursors: {} [k1:325]"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AssertionError: cursor not moved through pending edit: {} [k2:340]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "AssertionError: cursors: {} [k3:358]"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "66 passed, 40 errors in 30.61s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/qwen-r1/final",
+  "stage1": 21,
+  "stage1_total": 39,
+  "stage2": 8,
+  "stage2_total": 12,
+  "passed": 29,
+  "total": 51,
+  "tests": 46,
+  "runtime_loc": 1150,
+  "grade_seconds": 165.8,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": false,
+    "detail": "AssertionError: since=current: got None, want []"
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"out_of_range\", \"message\": \"delete out of range\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_rev', want 'bad_request'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'n1'"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'e0'"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: duplicate ack rev: got 0, want 1"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "AssertionError: duplicate ack after restart: got 0, want 1"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: c0: AssertionError: c0: got rev 5 after 3 (gap or reorder); c1: AssertionError: c1: got rev 5 after 3 (gap or reorder); c2: AssertionError: c2: got rev 2 after 2 (gap or reorder)"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 4; c1: AssertionError: c1: got rev 6 after 3 (gap or reorder); c2: AssertionError: c2: got rev 2 after 3 (gap or reorder)"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: c0: ConnectionError: connection closed; c1: AssertionError: c1: got rev 5 after 2 (gap or reorder); c2: ConnectionError: connection closed"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "TimeoutError: no message within 5.0s"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "AssertionError: moved cursor: got (3, 8), want (3, 6)"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 60.0s"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "AssertionError: not synced: client '0abc12' vs server 'abc111' [settle:127]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "AssertionError: not synced: client '(tig cat sat blac the mat! today' vs server '(big big the big cat blact on the mat today' [settle:127]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": false,
+    "detail": "AssertionError: text: 'NOadbc' [l7:238]"
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: clients diverged [e2e:294]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: a client never synced [e2e:287]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AssertionError: cursor not moved through pending edit: {'bob': 6} [k2:340]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "4 failed, 46 passed in 50.92s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/qwen-r2/final",
+  "stage1": 19,
+  "stage1_total": 39,
+  "stage2": 0,
+  "stage2_total": 12,
+  "passed": 19,
+  "total": 51,
+  "tests": 50,
+  "runtime_loc": 1054,
+  "grade_seconds": 223.3,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: server text: got 'abcXYdef', want 'aXYf'"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: text: got 'B^01ffQ5689cd', want 'B^01ffQ569cd'"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"out_of_range\", \"message\": \"Delete extends past end of text\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_rev', want 'bad_request'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_request', want 'not_joined'"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'e0'"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: duplicate ack rev: got 2, want 1"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "ConnectionError: connection closed"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "AssertionError: history: got [(1, 'alice', 'h0'), (2, 'alice', 'h1')], want [(1, 'alice', 'h0'), (2, 'alice', 'h1'), (3, 'alice', 'h2')]"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "AssertionError: not re-applied: got ('abc', 1), want ('abcdef', 2)"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 6; c1: ConnectionError: connection closed; c2: AssertionError: c2: unexpected {'type': 'error', 'code': 'out_of_range', 'message': 'Insert position out of range'}"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 4; c1: KeyError: 3; c2: ConnectionError: connection closed"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "AssertionError: c0: KeyError: 2; c1: AssertionError: c1: got rev 5 after 3 (gap or reorder); c2: KeyError: 4"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "AssertionError: took 70.1s"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "TimeoutError: no message within 3.0s"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_request', want 'not_joined'"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "AssertionError: rev 0: got ('error', None, None), want ('snapshot', 0, '')"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "AssertionError: rev 0: got None, want ''"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "AssertionError: unjoined snapshot: got None, want 'abc'"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "check timed out after 120s"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "AssertionError: text after remote op: '[hello,thered' [l4:179]"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": false,
+    "detail": "UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value [insert:418]"
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value [delete:442]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: u0: UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value; u2: UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value [e2e:284]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "AssertionError: u0: UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value; u1: UnboundLocalError: cannot access local variable 'msg' where it is not associated with a value [e2e:284]"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'cursors' [cursors:317]"
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'cursors' [cursors:317]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": false,
+    "detail": "AttributeError: 'Client' object has no attribute 'cursors' [cursors:317]"
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": false,
+    "detail": "no README"
+   }
+  ]
+ },
+ {
+  "run": "runs/qwen-r3/final",
+  "stage1": 17,
+  "stage1_total": 39,
+  "stage2": 2,
+  "stage2_total": 12,
+  "passed": 19,
+  "total": 51,
+  "tests": null,
+  "runtime_loc": 1509,
+  "grade_seconds": 330.8,
+  "checks": [
+   {
+    "id": "S1",
+    "stage": 1,
+    "title": "server starts and accepts connections",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S2",
+    "stage": 1,
+    "title": "join creates an empty doc at rev 0",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S3",
+    "stage": 1,
+    "title": "sequential ops are acked with consecutive revs and applied",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S4",
+    "stage": 1,
+    "title": "ops are broadcast to other joined connections (not the sender)",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S5",
+    "stage": 1,
+    "title": "deletes and multi-edit ops apply left to right",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S6",
+    "stage": 1,
+    "title": "positions are Unicode code points",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S7",
+    "stage": 1,
+    "title": "documents are isolated",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "S8",
+    "stage": 1,
+    "title": "join with `since` returns the committed ops after that rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "T1",
+    "stage": 1,
+    "title": "concurrent inserts at the same position: earlier-committed stays left",
+    "ok": false,
+    "detail": "AssertionError: server text: got 'abL', want 'aELb'"
+   },
+   {
+    "id": "T2",
+    "stage": 1,
+    "title": "insert inside a concurrently deleted range lands at the deletion point",
+    "ok": false,
+    "detail": "AssertionError: server text: got 'aXbcdef', want 'aXf'"
+   },
+   {
+    "id": "T3",
+    "stage": 1,
+    "title": "delete spanning a concurrent insert splits and keeps the inserted text",
+    "ok": false,
+    "detail": "AssertionError: server text: got 'ade', want 'aXYf'"
+   },
+   {
+    "id": "T4",
+    "stage": 1,
+    "title": "overlapping deletes; a fully covered delete commits as []",
+    "ok": false,
+    "detail": "AssertionError: after partial overlap: got ('abcdfgh', 3), want ('abh', 3)"
+   },
+   {
+    "id": "T5",
+    "stage": 1,
+    "title": "an op based on a much older revision is transformed through all later ops",
+    "ok": false,
+    "detail": "AssertionError: text: got '0^1234Q56789', want 'B^01ffQ569cd'"
+   },
+   {
+    "id": "T6",
+    "stage": 1,
+    "title": "multi-edit ops transform against multi-edit ops",
+    "ok": false,
+    "detail": "AssertionError: expected ack, got {\"type\": \"error\", \"code\": \"out_of_range\", \"message\": \"del [15, 21) out of range [0, 19]\", \"id\": \"3a4b0b8371ca\"}"
+   },
+   {
+    "id": "E1",
+    "stage": 1,
+    "title": "malformed JSON gets bad_json and the connection keeps working",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "E2",
+    "stage": 1,
+    "title": "malformed requests get bad_request (with id echoed)",
+    "ok": false,
+    "detail": "AssertionError: error code: got 'bad_rev', want 'bad_request'"
+   },
+   {
+    "id": "E3",
+    "stage": 1,
+    "title": "op on a doc not joined gets not_joined",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'n1'"
+   },
+   {
+    "id": "E4",
+    "stage": 1,
+    "title": "bad_rev and out_of_range (validated against the base revision); nothing committed",
+    "ok": false,
+    "detail": "AssertionError: error id: got None, want 'e0'"
+   },
+   {
+    "id": "E5",
+    "stage": 1,
+    "title": "a client dying mid-line doesn't affect others",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "X1",
+    "stage": 1,
+    "title": "resending an op id is acked with the original rev and not re-applied",
+    "ok": false,
+    "detail": "AssertionError: duplicate ack rev: got 2, want 1"
+   },
+   {
+    "id": "P1",
+    "stage": 1,
+    "title": "acked ops survive SIGKILL + restart",
+    "ok": false,
+    "detail": "StartFail: server did not start: tate(data_dir)\n            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/livedoc-grade-89r0p97q/project/server.py\", line 347, in __init__\n    self.seen_ops[doc_name].add((entry[\"client\"], entry[\"id\"]))\n                                 ~~~~~^^^^^^^^^^\nTypeError: list indices mus"
+   },
+   {
+    "id": "P2",
+    "stage": 1,
+    "title": "history (`since`) survives restart",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "X2",
+    "stage": 1,
+    "title": "exactly-once survives restart",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "C1",
+    "stage": 1,
+    "title": "fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "C2",
+    "stage": 1,
+    "title": "ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "C3",
+    "stage": 1,
+    "title": "scale: 40 clients x 30 ops finish within 30 s and converge",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "C4",
+    "stage": 1,
+    "title": "large document: 200k-char doc + 300 edits within 20 s",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "R1",
+    "stage": 2,
+    "title": "cursor updates are broadcast to others",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "R2",
+    "stage": 2,
+    "title": "stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't)",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "R3",
+    "stage": 2,
+    "title": "cursors query; cursors move with later deletes",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "R4",
+    "stage": 2,
+    "title": "leave is broadcast when a name's last connection closes",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "R5",
+    "stage": 2,
+    "title": "cursor errors: not_joined, bad_rev, out_of_range",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "H1",
+    "stage": 2,
+    "title": "snapshot returns the text at any revision",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "H2",
+    "stage": 2,
+    "title": "snapshots work after restart",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "H3",
+    "stage": 2,
+    "title": "snapshot errors: not_found, bad_rev; no join needed",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "H4",
+    "stage": 2,
+    "title": "snapshots of a 5,000-revision document are fast (each < 1 s)",
+    "ok": false,
+    "detail": "StartFail: server did not start earlier"
+   },
+   {
+    "id": "L1",
+    "stage": 1,
+    "title": "client: constructor joins and exposes text/rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L2",
+    "stage": 1,
+    "title": "client: edits apply locally at once and are sent against the latest rev",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L3",
+    "stage": 1,
+    "title": "client: invalid edits raise ValueError and send nothing",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L4",
+    "stage": 1,
+    "title": "client: a remote op arriving while an op is in flight is merged correctly",
+    "ok": false,
+    "detail": "AssertionError: not synced after ack [l4:183]"
+   },
+   {
+    "id": "L5",
+    "stage": 1,
+    "title": "client: one op in flight; buffered edits are sent after the ack",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L6",
+    "stage": 1,
+    "title": "client: in-flight + buffered edits + several remote ops converge with the server",
+    "ok": false,
+    "detail": "TimeoutError: client sent nothing within 3.0s [recv:209]"
+   },
+   {
+    "id": "L7",
+    "stage": 1,
+    "title": "client: ignores messages for other documents",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "L8",
+    "stage": 1,
+    "title": "client: 4 concurrent clients converge against the reference server",
+    "ok": false,
+    "detail": "AssertionError: a client never synced [e2e:287]"
+   },
+   {
+    "id": "L9",
+    "stage": 1,
+    "title": "end-to-end: 4 concurrent clients converge against the agent's own server",
+    "ok": false,
+    "detail": "agent server did not start: server did not start earlier"
+   },
+   {
+    "id": "K1",
+    "stage": 2,
+    "title": "client: remote cursors appear in Client.cursors and update",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "K2",
+    "stage": 2,
+    "title": "client: cursors move through pending local edits and later remote ops",
+    "ok": false,
+    "detail": "AssertionError: own insert at cursor should push it: {'bob': 9} [k2:345]"
+   },
+   {
+    "id": "K3",
+    "stage": 2,
+    "title": "client: leave removes a cursor; own name never listed",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q1",
+    "stage": 1,
+    "title": "agent's own tests pass (pytest tests/ -q)",
+    "ok": false,
+    "detail": "pytest timed out after 300 s"
+   },
+   {
+    "id": "Q2",
+    "stage": 1,
+    "title": "tests leave nothing behind in the project directory",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "id": "Q3",
+    "stage": 1,
+    "title": "README explains how to run the server and the tests",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ }
+]

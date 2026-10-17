@@ -1,0 +1,48 @@
+ 37/51  stage1 29/39  stage2  8/12  counterfactual/opusplan-qwen-r1-patched  tests=68 loc=1224 (231.1s)
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error code: got 'bad_rev', want 'bad_request'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: error code: got 'bad_request', want 'not_joined'
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: error code: got 'bad_request', want 'out_of_range'
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — AssertionError: took 69.7s
+     ✗ R4 leave is broadcast when a name's last connection closes — AssertionError: carol's cursor kept
+     ✗ R5 cursor errors: not_joined, bad_rev, out_of_range — AssertionError: error code: got 'bad_request', want 'not_joined'
+     ✗ H4 snapshots of a 5,000-revision document are fast (each < 1 s) — TimeoutError: no message within 60.0s
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — AssertionError: not synced: client '0abc12' vs server 'abc1' [settle:127]
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — TimeoutError: client sent nothing within 3.0s [recv:209]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AssertionError: a client never synced [e2e:287]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — AssertionError: a client never synced [e2e:287]
+     ✗ K2 client: cursors move through pending local edits and later remote ops — AssertionError: own insert at cursor should push it: {'bob': 9} [k2:345]
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — 7 failed, 68 passed in 41.25s
+     ✗ Q3 README explains how to run the server and the tests — no README
+ 19/51  stage1 17/39  stage2  2/12  counterfactual/opusplan-qwen-r2-patched  tests=None loc=961 (863.2s)
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — AssertionError: broadcast: got {'type': 'op', 'doc': 'd', 'rev': 1, 'client': None, 'id': 'x1'}, want {'type': 'op', 'doc': 'd', 'rev': 1, 'client': 'alice', 'id': 'x1'}
+     ✗ S8 join with `since` returns the committed ops after that rev — AssertionError: ops metadata: got [(2, None, 'op1'), (3, None, 'op2'), (4, None, 'op3')], want [(2, 'alice', 'op1'), (3, 'alice', 'op2'), (4, 'alice', 'op3')]
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: after partial overlap: got ('abgh', 3), want ('abh', 3)
+     ✗ T5 an op based on a much older revision is transformed through all later ops — AssertionError: text: got 'B^01ffQ5689cd', want 'B^01ffQ569cd'
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: error code: got 'bad_request', want 'out_of_range'
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: same id from another client: got 1, want 3
+     ✗ P1 acked ops survive SIGKILL + restart — AssertionError: p1: got ('', 0), want ('z😀üüxyzab😀', 20)
+     ✗ P2 history (`since`) survives restart — AssertionError: history: got [], want [(1, 'alice', 'h0'), (2, 'alice', 'h1'), (3, 'alice', 'h2')]
+     ✗ X2 exactly-once survives restart — AssertionError: not re-applied: got ('abc', 1), want ('abcdef', 2)
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — AssertionError: c0: OpError: delete out of range: {'del': 62, 'len': 1}; c1: OpError: delete out of range: {'del': 62, 'len': 1}; c2: OpError: delete out of range: {'del': 62, 'len': 1}
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — AssertionError: c0: OpError: delete out of range: {'del': 67, 'len': 1}; c1: OpError: delete out of range: {'del': 67, 'len': 1}; c3: OpError: delete out of range: {'del': 67, 'len': 1}
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — AssertionError: c0: OpError: delete out of range: {'del': 73, 'len': 3}; c1: OpError: delete out of range: {'del': 73, 'len': 3}; c2: OpError: delete out of range: {'del': 73, 'len': 3}
+     ✗ R1 cursor updates are broadcast to others — TimeoutError: no message within 3.0s
+     ✗ R2 stale cursors are moved forward (own insert at the cursor pushes it, others' doesn't) — TimeoutError: no message within 3.0s
+     ✗ R3 cursors query; cursors move with later deletes — TimeoutError: no message within 3.0s
+     ✗ R4 leave is broadcast when a name's last connection closes — TimeoutError: no message within 3.0s
+     ✗ R5 cursor errors: not_joined, bad_rev, out_of_range — AssertionError: error code: got 'bad_request', want 'not_joined'
+     ✗ H1 snapshot returns the text at any revision — AssertionError: rev 0: got ('error', None, None), want ('snapshot', 0, '')
+     ✗ H2 snapshots work after restart — AssertionError: rev 0: got None, want ''
+     ✗ H3 snapshot errors: not_found, bad_rev; no join needed — AssertionError: unjoined snapshot: got None, want 'abc'
+     ✗ H4 snapshots of a 5,000-revision document are fast (each < 1 s) — AssertionError: rev 463: got None, want 'aa😀aç😀ççabaçbç😀çaab😀ab😀😀😀😀aç😀bbç😀çabb😀bbbbçbbaç😀çbbabbb😀bbbbaçaba😀bab😀b😀aaaçabbbbaaçbbaçbbç😀😀ç😀aaçb😀😀😀😀çabbçbabçbb😀ça😀çb😀bbbbbbbbb'
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — timed out after 120s
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — timed out after 120s
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — timed out after 120s
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — timed out after 120s
+     ✗ L7 client: ignores messages for other documents — AssertionError: text: 'abc' [l7:238]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — timed out after 120s
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — timed out after 120s
+     ✗ K2 client: cursors move through pending local edits and later remote ops — timed out after 120s
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests/ directory
+     ✗ Q2 tests leave nothing behind in the project directory — no tests
+     ✗ Q3 README explains how to run the server and the tests — no README

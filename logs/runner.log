@@ -1,0 +1,54 @@
+=== group plans start 2026-10-15T21:53:38-07:00
+opusplan-r1 exit=0 wall=85.0s
+opusplan-r2 exit=0 wall=63.6s
+opusplan-r3 exit=0 wall=62.6s
+=== group plans done 2026-10-15T21:57:09-07:00
+=== group haiku start 2026-10-15T21:57:09-07:00
+haiku-r1:s1 exit=0 wall=440.1s
+haiku-r1:s2 exit=0 wall=457.8s
+haiku-r2:s1 exit=0 wall=450.6s
+haiku-r2:s2 exit=0 wall=356.3s
+haiku-r3:s1 exit=0 wall=425.6s
+haiku-r3:s2 exit=0 wall=302.7s
+=== group haiku done 2026-10-15T22:37:43-07:00
+=== group opus start 2026-10-15T22:37:43-07:00
+opus-r1:s1 exit=0 wall=401.9s
+opus-r1:s2 exit=0 wall=306.0s
+opus-r2:s1 exit=0 wall=582.1s
+opus-r2:s2 exit=0 wall=510.4s
+opus-r3:s1 exit=0 wall=355.0s
+opus-r3:s2 exit=0 wall=408.1s
+=== group opus done 2026-10-15T23:20:27-07:00
+=== group nemotron start 2026-10-15T23:20:27-07:00
+nemotron-r1:s1 exit=124 wall=3600.0s
+nemotron-r1:s2 exit=124 wall=1800.0s
+opusplan-nemotron-r1:s1 exit=124 wall=3600.0s
+opusplan-nemotron-r1:s2 exit=124 wall=1800.0s
+nemotron-r2:s1 exit=124 wall=3600.0s
+nemotron-r2:s2 exit=124 wall=1800.0s
+opusplan-nemotron-r2:s1 exit=124 wall=3600.0s
+opusplan-nemotron-r2:s2 exit=124 wall=1800.0s
+nemotron-r3:s1 exit=124 wall=3600.0s
+nemotron-r3:s2 exit=124 wall=1800.0s
+opusplan-nemotron-r3:s1 exit=124 wall=3600.0s
+opusplan-nemotron-r3:s2 exit=124 wall=1800.0s
+=== group nemotron done 2026-10-16T08:21:24-07:00
+=== group qwen start 2026-10-16T08:21:24-07:00
+qwen-r1:s1 exit=124 wall=3600.0s
+qwen-r1:s2 exit=124 wall=1800.0s
+opusplan-qwen-r1:s1 exit=124 wall=3600.0s
+opusplan-qwen-r1:s2 exit=124 wall=1800.0s
+qwen-r2:s1 exit=137 wall=145.4s
+qwen-r2:s2 exit=143 wall=175.3s
+opusplan-qwen-r2:s1 exit=124 wall=3600.0s
+opusplan-qwen-r2:s2 exit=124 wall=1800.0s
+qwen-r3:s1 exit=124 wall=3600.0s
+qwen-r3:s2 exit=124 wall=1800.0s
+opusplan-qwen-r3:s1 exit=124 wall=3600.0s
+opusplan-qwen-r3:s2 exit=124 wall=1800.0s
+=== group qwen done 2026-10-16T15:57:57-07:00
+ALL_V3_GROUPS_DONE plans haiku opus nemotron qwen
+=== rerun qwen-r2 start 2026-10-16T15:58:26-07:00 (original killed by grader; see logs/invalid)
+qwen-r2:s1 exit=124 wall=3600.0s
+qwen-r2:s2 exit=124 wall=1800.0s
+RERUN_QWEN_R2_DONE 2026-10-16T17:28:37-07:00

@@ -1,0 +1,373 @@
+ 39/39  stage1 39/39  runs/haiku-r1/stage1  tests=36 loc=603 (21.1s)
+ 39/39  stage1 39/39  runs/haiku-r2/stage1  tests=3041 loc=564 (17.5s)
+ 39/39  stage1 39/39  runs/haiku-r3/stage1  tests=2091 loc=637 (17.6s)
+  2/39  stage1  2/39  runs/nemotron-r1/stage1  tests=None loc=383 (101.9s)
+     ✗ S3 sequential ops are acked with consecutive revs and applied — TimeoutError: no message within 5.0s
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — AssertionError: expected ack, got {"type": "joined", "doc": "d", "rev": 0, "text": ""}
+     ✗ S5 deletes and multi-edit ops apply left to right — TimeoutError: no message within 5.0s
+     ✗ S6 positions are Unicode code points — TimeoutError: no message within 5.0s
+     ✗ S7 documents are isolated — ConnectionError: connection closed
+     ✗ S8 join with `since` returns the committed ops after that rev — TimeoutError: no message within 5.0s
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — TimeoutError: no message within 5.0s
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — TimeoutError: no message within 5.0s
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — TimeoutError: no message within 5.0s
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — TimeoutError: no message within 5.0s
+     ✗ T5 an op based on a much older revision is transformed through all later ops — TimeoutError: no message within 5.0s
+     ✗ T6 multi-edit ops transform against multi-edit ops — TimeoutError: no message within 5.0s
+     ✗ E1 malformed JSON gets bad_json and the connection keeps working — TimeoutError: no message within 5.0s
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error id: got None, want 'm1'
+     ✗ E3 op on a doc not joined gets not_joined — TimeoutError: no message within 5.0s
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — TimeoutError: no message within 5.0s
+     ✗ E5 a client dying mid-line doesn't affect others — AssertionError: expected ack, got {"type": "joined", "doc": "d", "rev": 0, "text": ""}
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — TimeoutError: no message within 5.0s
+     ✗ P1 acked ops survive SIGKILL + restart — ConnectionError: connection closed
+     ✗ P2 history (`since`) survives restart — TimeoutError: no message within 5.0s
+     ✗ X2 exactly-once survives restart — TimeoutError: no message within 5.0s
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — TimeoutError: no message within 5.0s
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — TimeoutError: no message within 5.0s
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — TimeoutError: no message within 5.0s
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — TimeoutError: no message within 5.0s
+     ✗ L1 client: constructor joins and exposes text/rev — no livedoc_client.py
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — no livedoc_client.py
+     ✗ L3 client: invalid edits raise ValueError and send nothing — no livedoc_client.py
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — no livedoc_client.py
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — no livedoc_client.py
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — no livedoc_client.py
+     ✗ L7 client: ignores messages for other documents — no livedoc_client.py
+     ✗ L8 client: 4 concurrent clients converge against the reference server — no livedoc_client.py
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — no livedoc_client.py
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests/ directory
+     ✗ Q2 tests leave nothing behind in the project directory — no tests
+     ✗ Q3 README explains how to run the server and the tests — no README
+  1/39  stage1  1/39  runs/nemotron-r2/stage1  tests=None loc=1003 (126.6s)
+     ✗ S2 join creates an empty doc at rev 0 — TimeoutError: no message within 5.0s
+     ✗ S3 sequential ops are acked with consecutive revs and applied — TimeoutError: no message within 5.0s
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — TimeoutError: no message within 5.0s
+     ✗ S5 deletes and multi-edit ops apply left to right — TimeoutError: no message within 5.0s
+     ✗ S6 positions are Unicode code points — TimeoutError: no message within 5.0s
+     ✗ S7 documents are isolated — TimeoutError: no message within 5.0s
+     ✗ S8 join with `since` returns the committed ops after that rev — TimeoutError: no message within 5.0s
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — TimeoutError: no message within 5.0s
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — TimeoutError: no message within 5.0s
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — TimeoutError: no message within 5.0s
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — TimeoutError: no message within 5.0s
+     ✗ T5 an op based on a much older revision is transformed through all later ops — TimeoutError: no message within 5.0s
+     ✗ T6 multi-edit ops transform against multi-edit ops — TimeoutError: no message within 5.0s
+     ✗ E1 malformed JSON gets bad_json and the connection keeps working — AssertionError: error code: got 'bad_request', want 'bad_json'
+     ✗ E2 malformed requests get bad_request (with id echoed) — TimeoutError: no message within 5.0s
+     ✗ E3 op on a doc not joined gets not_joined — TimeoutError: no message within 5.0s
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — TimeoutError: no message within 5.0s
+     ✗ E5 a client dying mid-line doesn't affect others — TimeoutError: no message within 5.0s
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — TimeoutError: no message within 5.0s
+     ✗ P1 acked ops survive SIGKILL + restart — TimeoutError: no message within 5.0s
+     ✗ P2 history (`since`) survives restart — TimeoutError: no message within 5.0s
+     ✗ X2 exactly-once survives restart — TimeoutError: no message within 5.0s
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — TimeoutError: no message within 5.0s
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — TimeoutError: no message within 5.0s
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — TimeoutError: no message within 5.0s
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — TimeoutError: no message within 5.0s
+     ✗ L1 client: constructor joins and exposes text/rev — no livedoc_client.py
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — no livedoc_client.py
+     ✗ L3 client: invalid edits raise ValueError and send nothing — no livedoc_client.py
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — no livedoc_client.py
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — no livedoc_client.py
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — no livedoc_client.py
+     ✗ L7 client: ignores messages for other documents — no livedoc_client.py
+     ✗ L8 client: 4 concurrent clients converge against the reference server — no livedoc_client.py
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — no livedoc_client.py
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests/ directory
+     ✗ Q2 tests leave nothing behind in the project directory — no tests
+     ✗ Q3 README explains how to run the server and the tests — no README
+  1/39  stage1  1/39  runs/nemotron-r3/stage1  tests=None loc=1159 (126.7s)
+     ✗ S2 join creates an empty doc at rev 0 — TimeoutError: no message within 5.0s
+     ✗ S3 sequential ops are acked with consecutive revs and applied — TimeoutError: no message within 5.0s
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — TimeoutError: no message within 5.0s
+     ✗ S5 deletes and multi-edit ops apply left to right — TimeoutError: no message within 5.0s
+     ✗ S6 positions are Unicode code points — TimeoutError: no message within 5.0s
+     ✗ S7 documents are isolated — TimeoutError: no message within 5.0s
+     ✗ S8 join with `since` returns the committed ops after that rev — TimeoutError: no message within 5.0s
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — TimeoutError: no message within 5.0s
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — TimeoutError: no message within 5.0s
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — TimeoutError: no message within 5.0s
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — TimeoutError: no message within 5.0s
+     ✗ T5 an op based on a much older revision is transformed through all later ops — TimeoutError: no message within 5.0s
+     ✗ T6 multi-edit ops transform against multi-edit ops — TimeoutError: no message within 5.0s
+     ✗ E1 malformed JSON gets bad_json and the connection keeps working — ConnectionError: connection closed
+     ✗ E2 malformed requests get bad_request (with id echoed) — TimeoutError: no message within 5.0s
+     ✗ E3 op on a doc not joined gets not_joined — TimeoutError: no message within 5.0s
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — TimeoutError: no message within 5.0s
+     ✗ E5 a client dying mid-line doesn't affect others — TimeoutError: no message within 5.0s
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — TimeoutError: no message within 5.0s
+     ✗ P1 acked ops survive SIGKILL + restart — TimeoutError: no message within 5.0s
+     ✗ P2 history (`since`) survives restart — TimeoutError: no message within 5.0s
+     ✗ X2 exactly-once survives restart — TimeoutError: no message within 5.0s
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — TimeoutError: no message within 5.0s
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — TimeoutError: no message within 5.0s
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — TimeoutError: no message within 5.0s
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — TimeoutError: no message within 5.0s
+     ✗ L1 client: constructor joins and exposes text/rev — no livedoc_client.py
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — no livedoc_client.py
+     ✗ L3 client: invalid edits raise ValueError and send nothing — no livedoc_client.py
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — no livedoc_client.py
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — no livedoc_client.py
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — no livedoc_client.py
+     ✗ L7 client: ignores messages for other documents — no livedoc_client.py
+     ✗ L8 client: 4 concurrent clients converge against the reference server — no livedoc_client.py
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — no livedoc_client.py
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests/ directory
+     ✗ Q2 tests leave nothing behind in the project directory — no tests
+     ✗ Q3 README explains how to run the server and the tests — no README
+  1/39  stage1  1/39  runs/opusplan-nemotron-r1/stage1  tests=19 loc=291 (0.6s)
+     ✗ S1 server starts and accepts connections — no server.py
+     ✗ S2 join creates an empty doc at rev 0 — no server.py
+     ✗ S3 sequential ops are acked with consecutive revs and applied — no server.py
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — no server.py
+     ✗ S5 deletes and multi-edit ops apply left to right — no server.py
+     ✗ S6 positions are Unicode code points — no server.py
+     ✗ S7 documents are isolated — no server.py
+     ✗ S8 join with `since` returns the committed ops after that rev — no server.py
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — no server.py
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — no server.py
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — no server.py
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — no server.py
+     ✗ T5 an op based on a much older revision is transformed through all later ops — no server.py
+     ✗ T6 multi-edit ops transform against multi-edit ops — no server.py
+     ✗ E1 malformed JSON gets bad_json and the connection keeps working — no server.py
+     ✗ E2 malformed requests get bad_request (with id echoed) — no server.py
+     ✗ E3 op on a doc not joined gets not_joined — no server.py
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — no server.py
+     ✗ E5 a client dying mid-line doesn't affect others — no server.py
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — no server.py
+     ✗ P1 acked ops survive SIGKILL + restart — no server.py
+     ✗ P2 history (`since`) survives restart — no server.py
+     ✗ X2 exactly-once survives restart — no server.py
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — no server.py
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — no server.py
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — no server.py
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — no server.py
+     ✗ L1 client: constructor joins and exposes text/rev — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L3 client: invalid edits raise ValueError and send nothing — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L7 client: ignores messages for other documents — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AttributeError: module 'livedoc_client' has no attribute 'Client' [load_client:32]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — agent server did not start: server did not start: /home/user/.venvs/livedoc/bin/python: can't open file '/tmp/livedoc-grade-dsakezwu/project/server.py': [Errno 2] No such file or directory
+
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — 2 failed, 19 passed in 0.08s
+     ✗ Q3 README explains how to run the server and the tests — no README
+  1/39  stage1  1/39  runs/opusplan-nemotron-r2/stage1  tests=0 loc=1196 (3.7s)
+     ✗ S1 server starts and accepts connections — StartFail: server did not start:   File "/tmp/livedoc-grade-coosx_f7/project/server.py", line 227
+    print(f"[DEBUG _handle_client] starting, writer={writer}", flush=True)
+    ^
+IndentationError: expected an indented block after function definition on line 226
+
+     ✗ S2 join creates an empty doc at rev 0 — StartFail: server did not start earlier
+     ✗ S3 sequential ops are acked with consecutive revs and applied — StartFail: server did not start earlier
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — StartFail: server did not start earlier
+     ✗ S5 deletes and multi-edit ops apply left to right — StartFail: server did not start earlier
+     ✗ S6 positions are Unicode code points — StartFail: server did not start earlier
+     ✗ S7 documents are isolated — StartFail: server did not start earlier
+     ✗ S8 join with `since` returns the committed ops after that rev — StartFail: server did not start earlier
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — StartFail: server did not start earlier
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — StartFail: server did not start earlier
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — StartFail: server did not start earlier
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — StartFail: server did not start earlier
+     ✗ T5 an op based on a much older revision is transformed through all later ops — StartFail: server did not start earlier
+     ✗ T6 multi-edit ops transform against multi-edit ops — StartFail: server did not start earlier
+     ✗ E1 malformed JSON gets bad_json and the connection keeps working — StartFail: server did not start earlier
+     ✗ E2 malformed requests get bad_request (with id echoed) — StartFail: server did not start earlier
+     ✗ E3 op on a doc not joined gets not_joined — StartFail: server did not start earlier
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — StartFail: server did not start earlier
+     ✗ E5 a client dying mid-line doesn't affect others — StartFail: server did not start earlier
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — StartFail: server did not start earlier
+     ✗ P1 acked ops survive SIGKILL + restart — StartFail: server did not start earlier
+     ✗ P2 history (`since`) survives restart — StartFail: server did not start earlier
+     ✗ X2 exactly-once survives restart — StartFail: server did not start earlier
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — StartFail: server did not start earlier
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — StartFail: server did not start earlier
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — StartFail: server did not start earlier
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — StartFail: server did not start earlier
+     ✗ L1 client: constructor joins and exposes text/rev — AttributeError: 'Client' object has no attribute 'text' [l1:135]
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — AttributeError: 'Client' object has no attribute 'text' [l2:143]
+     ✗ L3 client: invalid edits raise ValueError and send nothing — AttributeError: 'Client' object has no attribute 'text' [l3:165]
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — AssertionError: op based on rev 6 but server is at 5 [expect_op:95]
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — AssertionError: op based on rev 2 but server is at 1 [expect_op:95]
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — AssertionError: op based on rev 11 but server is at 10 [expect_op:95]
+     ✗ L7 client: ignores messages for other documents — AttributeError: 'Client' object has no attribute 'text' [l7:238]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AssertionError: u0: AttributeError: 'Client' object has no attribute 'text'; u1: AttributeError: 'Client' object has no attribute 'text' [e2e:284]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — agent server did not start: server did not start earlier
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests ran in 0.00s
+     ✗ Q3 README explains how to run the server and the tests — no README
+  4/39  stage1  4/39  runs/opusplan-nemotron-r3/stage1  tests=0 loc=588 (2.1s)
+     ✗ S3 sequential ops are acked with consecutive revs and applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ S5 deletes and multi-edit ops apply left to right — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ S6 positions are Unicode code points — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ S7 documents are isolated — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ S8 join with `since` returns the committed ops after that rev — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T5 an op based on a much older revision is transformed through all later ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ T6 multi-edit ops transform against multi-edit ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error id: got None, want 'm1'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ E5 a client dying mid-line doesn't affect others — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ P1 acked ops survive SIGKILL + restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ P2 history (`since`) survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ X2 exactly-once survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "Missing fields"}
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — ConnectionError: connection closed
+     ✗ L1 client: constructor joins and exposes text/rev — no livedoc_client.py
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — no livedoc_client.py
+     ✗ L3 client: invalid edits raise ValueError and send nothing — no livedoc_client.py
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — no livedoc_client.py
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — no livedoc_client.py
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — no livedoc_client.py
+     ✗ L7 client: ignores messages for other documents — no livedoc_client.py
+     ✗ L8 client: 4 concurrent clients converge against the reference server — no livedoc_client.py
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — no livedoc_client.py
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests ran in 0.00s
+     ✗ Q3 README explains how to run the server and the tests — no README
+  9/39  stage1  9/39  runs/opusplan-qwen-r1/stage1  tests=57 loc=887 (73.6s)
+     ✗ S3 sequential ops are acked with consecutive revs and applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ S5 deletes and multi-edit ops apply left to right — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ S6 positions are Unicode code points — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ S7 documents are isolated — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ S8 join with `since` returns the committed ops after that rev — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T5 an op based on a much older revision is transformed through all later ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ T6 multi-edit ops transform against multi-edit ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error id: got None, want 'm1'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ E5 a client dying mid-line doesn't affect others — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ P1 acked ops survive SIGKILL + restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ P2 history (`since`) survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ X2 exactly-once survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"}
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — AssertionError: not synced: client '0abc12' vs server 'abc1' [settle:127]
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — TimeoutError: client sent nothing within 3.0s [recv:209]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AssertionError: a client never synced [e2e:287]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "client must be a non-empty string"} [recv_type:125]
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — 6 failed, 57 passed in 44.92s
+     ✗ Q3 README explains how to run the server and the tests — no README
+  5/39  stage1  5/39  runs/opusplan-qwen-r2/stage1  tests=None loc=929 (606.8s)
+     ✗ S3 sequential ops are acked with consecutive revs and applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "i1"}
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "x1"}
+     ✗ S5 deletes and multi-edit ops apply left to right — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "4c942127fa60"}
+     ✗ S6 positions are Unicode code points — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "f1b748c148ef"}
+     ✗ S7 documents are isolated — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "21cb19331ce8"}
+     ✗ S8 join with `since` returns the committed ops after that rev — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "op0"}
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "d15bc1135ece"}
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "c03f922720b5"}
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "ca363845c6e4"}
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "3fd3e32dc8ec"}
+     ✗ T5 an op based on a much older revision is transformed through all later ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "d9e3898ab0bb"}
+     ✗ T6 multi-edit ops transform against multi-edit ops — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "b3b9b93ce803"}
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "m4"}
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "838873324940"}
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "e04f49828663"}
+     ✗ E5 a client dying mid-line doesn't affect others — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "968318c480c3"}
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "once"}
+     ✗ P1 acked ops survive SIGKILL + restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "p1-0"}
+     ✗ P2 history (`since`) survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "h0"}
+     ✗ X2 exactly-once survives restart — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "keep"}
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "a405a120da36"}
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "8edaf42b96a4"}
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "31538041e52f"}
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "47107987f568"}
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — timed out after 120s
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — timed out after 120s
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — timed out after 120s
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — timed out after 120s
+     ✗ L7 client: ignores messages for other documents — AssertionError: text: 'NOadbc' [l7:238]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — timed out after 120s
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — AssertionError: expected ack, got {"type": "error", "code": "bad_request", "message": "edit must have exactly 'ins' or 'del' key", "id": "s0"} [recv_type:125]
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — no tests/ directory
+     ✗ Q2 tests leave nothing behind in the project directory — no tests
+     ✗ Q3 README explains how to run the server and the tests — no README
+ 26/39  stage1 26/39  runs/opusplan-qwen-r3/stage1  tests=55 loc=989 (84.0s)
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error id: got None, want 'm1'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: error code: got 'bad_request', want 'not_joined'
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: error id: got None, want 'e0'
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — ConnectionError: connection closed
+     ✗ L2 client: edits apply locally at once and are sent against the latest rev — AssertionError: wait_synced returned False after ack [l2:148]
+     ✗ L4 client: a remote op arriving while an op is in flight is merged correctly — AssertionError: text after remote op: '[hello world' [l4:179]
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — AssertionError: not synced: client '0abc12' vs server 'abc1' [settle:127]
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — TimeoutError: client sent nothing within 3.0s [recv:209]
+     ✗ L7 client: ignores messages for other documents — AssertionError: text: 'abc' [l7:238]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AssertionError: a client never synced [e2e:287]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — AssertionError: a client never synced [e2e:287]
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — 55 passed, 20 errors in 25.37s
+     ✗ Q3 README explains how to run the server and the tests — no README
+ 39/39  stage1 39/39  runs/opus-r1/stage1  tests=67 loc=602 (25.3s)
+ 39/39  stage1 39/39  runs/opus-r2/stage1  tests=92 loc=648 (29.5s)
+ 39/39  stage1 39/39  runs/opus-r3/stage1  tests=44 loc=601 (16.1s)
+ 16/39  stage1 16/39  runs/qwen-r1/stage1  tests=34 loc=936 (357.0s)
+     ✗ S4 ops are broadcast to other joined connections (not the sender) — TimeoutError: no message within 5.0s
+     ✗ S8 join with `since` returns the committed ops after that rev — AssertionError: since=current: got None, want []
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — AssertionError: alice did not receive bob's transformed op
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — AssertionError: alice did not receive bob's transformed op
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — AssertionError: alice did not receive bob's transformed op
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: no broadcast for rev 4
+     ✗ T6 multi-edit ops transform against multi-edit ops — AssertionError: expected ack, got {"type": "error", "code": "out_of_range", "message": "delete out of range"}
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error code: got 'bad_rev', want 'bad_request'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: error id: got None, want 'n1'
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: error id: got None, want 'e0'
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: duplicate ack rev: got 0, want 1
+     ✗ X2 exactly-once survives restart — AssertionError: duplicate ack after restart: got 0, want 1
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — AssertionError: c0: AssertionError: c0: got rev 2 after 2 (gap or reorder); c1: ConnectionError: connection closed; c2: KeyError: 2
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — AssertionError: c0: KeyError: 2; c1: ConnectionError: connection closed; c2: KeyError: 2
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — AssertionError: c0: ConnectionError: connection closed; c1: AssertionError: c1: got rev 2 after 3 (gap or reorder); c2: KeyError: 2
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — TimeoutError: no message within 5.0s
+     ✗ L5 client: one op in flight; buffered edits are sent after the ack — timed out after 120s
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — timed out after 120s
+     ✗ L7 client: ignores messages for other documents — AssertionError: text: 'NOadbc' [l7:238]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — TimeoutError: No joined response from server [__init__:168]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — TimeoutError: No joined response from server [__init__:168]
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — 16 failed, 34 passed in 65.03s (0:01:05)
+     ✗ Q3 README explains how to run the server and the tests — no README
+ 17/39  stage1 17/39  runs/qwen-r3/stage1  tests=None loc=1105 (324.6s)
+     ✗ T1 concurrent inserts at the same position: earlier-committed stays left — AssertionError: server text: got 'abL', want 'aELb'
+     ✗ T2 insert inside a concurrently deleted range lands at the deletion point — AssertionError: server text: got 'aXbcdef', want 'aXf'
+     ✗ T3 delete spanning a concurrent insert splits and keeps the inserted text — AssertionError: server text: got 'ade', want 'aXYf'
+     ✗ T4 overlapping deletes; a fully covered delete commits as [] — AssertionError: after partial overlap: got ('abcdfgh', 3), want ('abh', 3)
+     ✗ T5 an op based on a much older revision is transformed through all later ops — AssertionError: text: got '0^1234Q56789', want 'B^01ffQ569cd'
+     ✗ T6 multi-edit ops transform against multi-edit ops — AssertionError: expected ack, got {"type": "error", "code": "out_of_range", "message": "del [15, 21) out of range [0, 19]", "id": "aa0cb200d8af"}
+     ✗ E2 malformed requests get bad_request (with id echoed) — AssertionError: error code: got 'bad_rev', want 'bad_request'
+     ✗ E3 op on a doc not joined gets not_joined — AssertionError: error id: got None, want 'n1'
+     ✗ E4 bad_rev and out_of_range (validated against the base revision); nothing committed — AssertionError: error id: got None, want 'e0'
+     ✗ X1 resending an op id is acked with the original rev and not re-applied — AssertionError: duplicate ack rev: got 2, want 1
+     ✗ P1 acked ops survive SIGKILL + restart — StartFail: server did not start: tate(data_dir)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/livedoc-grade-amlyton5/project/server.py", line 298, in __init__
+    self.seen_ops[doc_name].add((entry["client"], entry["id"]))
+                                 ~~~~~^^^^^^^^^^
+TypeError: list indices mus
+     ✗ P2 history (`since`) survives restart — StartFail: server did not start earlier
+     ✗ X2 exactly-once survives restart — StartFail: server did not start earlier
+     ✗ C1 fuzz: 6 clients x 50 concurrent ops with stale bases converge to the reference result — StartFail: server did not start earlier
+     ✗ C2 ordering: every client sees each revision exactly once, in order, acks after earlier broadcasts — StartFail: server did not start earlier
+     ✗ C3 scale: 40 clients x 30 ops finish within 30 s and converge — StartFail: server did not start earlier
+     ✗ C4 large document: 200k-char doc + 300 edits within 20 s — StartFail: server did not start earlier
+     ✗ L6 client: in-flight + buffered edits + several remote ops converge with the server — TimeoutError: client sent nothing within 3.0s [recv:209]
+     ✗ L8 client: 4 concurrent clients converge against the reference server — AssertionError: a client never synced [e2e:287]
+     ✗ L9 end-to-end: 4 concurrent clients converge against the agent's own server — agent server did not start: server did not start earlier
+     ✗ Q1 agent's own tests pass (pytest tests/ -q) — pytest timed out after 300 s
+     ✗ Q3 README explains how to run the server and the tests — no README
